@@ -49,7 +49,7 @@ cdef extern from 'windows.h':
     ctypedef LRESULT (*WNDPROC)(HWND hwnd, unsigned int uMsg, WPARAM wParam, LPARAM lParam) nogil
     enum:
         GWLP_WNDPROC
-    LONG_PTR SetWindowLongPtr(HWND hWnd, int nIndex, LONG_PTR dwNewLong)
+    LONG_PTR SetWindowLongPtrW(HWND hWnd, int nIndex, LONG_PTR dwNewLong)
 
     enum:
         SM_CXICON
@@ -204,7 +204,7 @@ def create_buttons(intptr_t hwnd,
     do_create_buttons(hwnd_, tooltip_prev, tooltip_play, tooltip_pause, tooltip_next)
 
     if hwnd not in oldwndprocs:
-        oldwndprocs[hwnd] = SetWindowLongPtr(hwnd_, GWLP_WNDPROC, <LONG_PTR> &wndproc)
+        oldwndprocs[hwnd] = SetWindowLongPtrW(hwnd_, GWLP_WNDPROC, <LONG_PTR> &wndproc)
 
 def set_playing(intptr_t hwnd, bint playing):
     icon = pause_icon if playing else play_icon
