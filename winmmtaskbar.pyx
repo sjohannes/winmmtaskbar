@@ -44,6 +44,7 @@ cdef extern from 'windows.h':
     enum:
         WM_COMMAND
         WM_DESTROY
+        WM_NCDESTROY
     cdef WORD LOWORD(void *l) nogil
     cdef WORD HIWORD(void *l) nogil
     ctypedef LRESULT (*WNDPROC)(HWND hwnd, unsigned int uMsg, WPARAM wParam, LPARAM lParam) nogil
@@ -192,6 +193,8 @@ cdef LRESULT wndproc(HWND hwnd, unsigned int uMsg, WPARAM wParam, LPARAM lParam)
     elif uMsg is WM_DESTROY:
         with gil:
             del callbacks[<intptr_t> hwnd]
+    elif uMsg is WM_NCDESTROY:
+        with gil:
             del oldwndprocs[<intptr_t> hwnd]
     return oldwndproc(hwnd, uMsg, wParam, lParam)
 
