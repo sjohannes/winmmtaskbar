@@ -5,6 +5,12 @@ Windows 7+ taskbar thumb buttons for multimedia apps.
 ![Screenshot](https://cloud.githubusercontent.com/assets/8440927/10864106/5bbdc16c-802e-11e5-987b-be3526d0cc27.png)
 
 
+## Download
+
+* [For Python 2.7 x86](https://ci.appveyor.com/api/buildjobs/0t3uic7vxow933c6/artifacts/build/lib.win32-2.7/winmmtaskbar.pyd)
+* [For Python 2.7 x86-64](https://ci.appveyor.com/api/buildjobs/0t3uic7vxow933c6/artifacts/build/lib.win-amd64-2.7/winmmtaskbar.pyd)
+
+
 ## Building
 
 1. Install [Microsoft Visual C++ Compiler for Python 2.7](https://www.microsoft.com/en-us/download/details.aspx?id=44266).
