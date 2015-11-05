@@ -1,7 +1,29 @@
 #!/usr/bin/env python
 
 from setuptools import setup
-from Cython.Build import cythonize
+
+try:
+    from Cython.Build import cythonize
+except ImportError:
+    import ast, re
+    from setuptools import Extension
+    meta_re = re.compile(
+        r'BEGIN: Cython Metadata\s(.*?)\sEND: Cython Metadata',
+        re.S)
+    def cythonize(source):
+        """Fake cythonize() that barely works for our case when the .pyx file
+        has been pre-translated to .cpp
+        """
+        assert source.endswith('.pyx')
+        name = source[:-4]
+        with open(name + '.cpp') as f:
+            text = f.read()
+        # Read distutils metadata (required libraries etc.)
+        meta = meta_re.search(text).group(1)
+        meta = ast.literal_eval(meta)
+        meta = meta['distutils']
+        ext = Extension(name, [name + '.cpp'], **meta)
+        return [ext]
 
 setup(
     name='winmmtaskbar',
