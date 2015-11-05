@@ -17,14 +17,21 @@ Download
 Building
 ========
 
-1. Install `Microsoft Visual C++ Compiler for Python 2.7`_.
-2. Install Cython_.
+1. Install the right compiler for your Python version. For example:
+
+   - For Python 2.7, install `Microsoft Visual C++ Compiler for Python 2.7`_.
+   - For Python 3.5, install `Visual Studio Community 2015`_.
+
+2. Install Cython_ (``pip install Cython`` works).
+
 3. ``setup.py build_ext``
 
 You'll get a ``.pyd`` file somewhere in the ``build`` directory.
 
 .. _Microsoft Visual C++ Compiler for Python 2.7:
-   https://www.microsoft.com/en-us/download/details.aspx?id=44266
+   https://download.microsoft.com/download/7/9/6/796EF2E4-801B-4FC4-AB28-B59FBF6D907B/VCForPython27.msi
+.. _Visual Studio Community 2015:
+   http://download.microsoft.com/download/0/B/C/0BC321A4-013F-479C-84E6-4A2F90B11269/vs_community.exe
 .. _Cython: http://cython.org/#download
 
 
