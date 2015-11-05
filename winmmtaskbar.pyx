@@ -20,6 +20,8 @@
 #   distutils: language = c++
 #   distutils: libraries = gdi32 ole32 user32
 
+cimport cython
+
 cdef extern from 'wchar.h':
     ctypedef Py_UNICODE wchar_t
     wchar_t *wcscpy(wchar_t *destination, const wchar_t *source)
@@ -98,6 +100,7 @@ cdef extern from 'longintrepr.h':
 ctypedef long long intptr_t
 
 
+@cython.internal
 cdef class CoHelper:
     def __cinit__(self):
         CoInitialize(NULL)
@@ -119,6 +122,7 @@ cdef object play_icon, pause_icon
 cdef dict oldwndprocs = {}
 cdef dict callbacks = {}
 
+@cython.internal
 cdef class Icon(long):
     cdef readonly unicode tooltip
     def __dealloc__(self):
