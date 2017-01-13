@@ -106,7 +106,7 @@ cdef class CoHelper:
         CoInitialize(NULL)
     def __dealloc__(self):
         CoUninitialize()
-cdef CoHelper co_helper = CoHelper()
+cdef CoHelper co_helper = CoHelper.__new__(CoHelper)
 
 cdef GUID CLSID_TaskbarList, IID_ITaskbarList3
 CLSIDFromString(u'{56FDF344-FD6D-11d0-958A-006097C9A090}', &CLSID_TaskbarList)
